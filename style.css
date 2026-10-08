@@ -106,48 +106,19 @@ label {
   letter-spacing: 1px;
 }
 
-input, textarea {
-  width: 100%;
-  background: #08081f;
-  border: 3px solid var(--accent);
-  color: var(--text);
-  font-family: inherit;
+.panel-body p {
   font-size: 10px;
-  padding: 12px;
-  margin-bottom: 20px;
-  outline: none;
+  line-height: 1.8;
+  color: var(--text);
 }
 
-input::placeholder, textarea::placeholder {
-  color: rgba(232, 250, 255, .35);
+.panel-body a {
+  color: var(--accent);
+  text-decoration: none;
 }
 
-input:focus, textarea:focus {
-  border-color: var(--border);
-  box-shadow: 0 0 10px rgba(59, 255, 158, .5);
-}
-
-button {
-  font-family: inherit;
-  font-size: 12px;
-  background: var(--accent);
-  color: var(--bg);
-  border: 3px solid var(--border);
-  padding: 12px 24px;
-  cursor: pointer;
-  letter-spacing: 2px;
-  box-shadow: 4px 4px 0 var(--border);
-  transition: transform .1s;
-}
-
-button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--border);
-}
-
-button:active {
-  transform: translate(4px, 4px);
-  box-shadow: none;
+.panel-body a:hover {
+  text-decoration: underline;
 }
 
 footer {
