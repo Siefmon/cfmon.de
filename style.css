@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-  --bg: #0b0b2a;
-  --panel: #12124a;
-  --border: #3bff9e;
-  --accent: #ff4ecd;
+  --bg: #1a0b3b;
+  --bg-deep: #0d0524;
+  --panel: #150a35;
+  --border: #00f0ff;
+  --accent: #ff2bd6;
   --text: #e8faff;
   --star: #ffffff;
 }
@@ -16,7 +17,7 @@
 }
 
 body {
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 45%, #2b1266 100%);
   color: var(--text);
   font-family: 'Press Start 2P', monospace;
   min-height: 100vh;
@@ -34,18 +35,72 @@ body {
   z-index: 0;
 }
 
-.stars { animation: scroll 60s linear infinite; }
-.stars2 { animation: scroll 120s linear infinite; }
-.stars3 { animation: scroll 180s linear infinite; }
+.stars  { background-image: radial-gradient(1px 1px 0 var(--star), transparent); background-size: 60px 60px; opacity: .5; animation: scroll 60s linear infinite; }
+.stars2 { background-image: radial-gradient(2px 2px 0 #00f0ff, transparent);    background-size: 120px 120px; opacity: .3; animation: scroll 120s linear infinite; }
+.stars3 { background-image: radial-gradient(1px 1px 0 #ff2bd6, transparent);    background-size: 200px 200px; opacity: .2; animation: scroll 180s linear infinite; }
 
 @keyframes scroll {
   from { background-position: 0 0; }
   to { background-position: 0 1000px; }
 }
 
-.stars  { background-image: radial-gradient(1px 1px 0 var(--star), transparent); background-size: 60px 60px; opacity: .5; }
-.stars2 { background-image: radial-gradient(2px 2px 0 var(--star), transparent); background-size: 120px 120px; opacity: .3; }
-.stars3 { background-image: radial-gradient(1px 1px 0 var(--star), transparent); background-size: 200px 200px; opacity: .2; }
+/* Pixel-Planeten */
+.planet {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.planet svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.planet-big {
+  top: 8%;
+  right: 6%;
+  width: 140px;
+  animation: float1 6s ease-in-out infinite;
+}
+
+.planet-small {
+  bottom: 12%;
+  left: 5%;
+  width: 90px;
+  animation: float2 8s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* Pixel-Astronaut */
+.astronaut {
+  position: fixed;
+  top: 15%;
+  left: 6%;
+  width: 72px;
+  z-index: 0;
+  animation: drift 12s ease-in-out infinite;
+}
+
+.astronaut svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(20px) rotate(4deg); }
+}
 
 main {
   position: relative;
@@ -59,7 +114,9 @@ main {
 .welcome {
   font-size: clamp(28px, 6vw, 48px);
   color: var(--border);
-  text-shadow: 4px 4px 0 var(--accent), 8px 8px 0 rgba(255, 78, 205, .25);
+  text-shadow:
+    3px 3px 0 var(--accent),
+    6px 6px 0 rgba(255, 43, 214, .35);
   margin-bottom: 20px;
   letter-spacing: 2px;
 }
@@ -80,15 +137,15 @@ main {
   border: 4px solid var(--border);
   background: var(--panel);
   box-shadow:
-    0 0 0 4px #0b0b2a,
+    0 0 0 4px var(--bg-deep),
     0 0 0 8px var(--accent),
-    0 0 24px rgba(59, 255, 158, .4);
+    0 0 24px rgba(255, 43, 214, .35);
   text-align: left;
 }
 
 .panel-header {
-  background: var(--border);
-  color: var(--bg);
+  background: linear-gradient(90deg, var(--accent), #7b2ff7);
+  color: var(--bg-deep);
   font-size: 12px;
   padding: 12px 16px;
   letter-spacing: 2px;
@@ -96,14 +153,6 @@ main {
 
 .panel-body {
   padding: 24px;
-}
-
-label {
-  display: block;
-  font-size: 10px;
-  color: var(--border);
-  margin-bottom: 8px;
-  letter-spacing: 1px;
 }
 
 .panel-body p {
@@ -130,4 +179,7 @@ footer {
 
 @media (max-width: 480px) {
   .panel-body { padding: 16px; }
+  .astronaut { width: 48px; top: 10%; left: 4%; }
+  .planet-big { width: 90px; right: 4%; }
+  .planet-small { width: 60px; bottom: 8%; left: 4%; }
 }
