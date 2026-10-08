@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg: #0b0b2a;
+  --panel: #12124a;
+  --border: #3bff9e;
+  --accent: #ff4ecd;
+  --text: #e8faff;
+  --star: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Sternenhimmel */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stars { animation: scroll 60s linear infinite; }
+.stars2 { animation: scroll 120s linear infinite; }
+.stars3 { animation: scroll 180s linear infinite; }
+
+@keyframes scroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 1000px; }
+}
+
+.stars  { background-image: radial-gradient(1px 1px 0 var(--star), transparent); background-size: 60px 60px; opacity: .5; }
+.stars2 { background-image: radial-gradient(2px 2px 0 var(--star), transparent); background-size: 120px 120px; opacity: .3; }
+.stars3 { background-image: radial-gradient(1px 1px 0 var(--star), transparent); background-size: 200px 200px; opacity: .2; }
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+.welcome {
+  font-size: clamp(28px, 6vw, 48px);
+  color: var(--border);
+  text-shadow: 4px 4px 0 var(--accent), 8px 8px 0 rgba(255, 78, 205, .25);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: clamp(8px, 2vw, 12px);
+  color: var(--accent);
+  margin-bottom: 48px;
+  animation: blink 2s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: .4; }
+}
+
+/* Panel mit 8-Bit-Rahmen */
+.panel {
+  border: 4px solid var(--border);
+  background: var(--panel);
+  box-shadow:
+    0 0 0 4px #0b0b2a,
+    0 0 0 8px var(--accent),
+    0 0 24px rgba(59, 255, 158, .4);
+  text-align: left;
+}
+
+.panel-header {
+  background: var(--border);
+  color: var(--bg);
+  font-size: 12px;
+  padding: 12px 16px;
+  letter-spacing: 2px;
+}
+
+.panel-body {
+  padding: 24px;
+}
+
+label {
+  display: block;
+  font-size: 10px;
+  color: var(--border);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+input, textarea {
+  width: 100%;
+  background: #08081f;
+  border: 3px solid var(--accent);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(232, 250, 255, .35);
+}
+
+input:focus, textarea:focus {
+  border-color: var(--border);
+  box-shadow: 0 0 10px rgba(59, 255, 158, .5);
+}
+
+button {
+  font-family: inherit;
+  font-size: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  border: 3px solid var(--border);
+  padding: 12px 24px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: 4px 4px 0 var(--border);
+  transition: transform .1s;
+}
+
+button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+footer {
+  margin-top: 48px;
+  font-size: 8px;
+  color: rgba(232, 250, 255, .4);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+  .panel-body { padding: 16px; }
+}
