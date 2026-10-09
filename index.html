@@ -7,20 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="stars" aria-hidden="true">
-+      *         +          *
-    *       +    *     +
-        +        *   *        +
-  *         +        +     *
-     *   +       *        +
-+        *    +       *       *
-    +      *         +    *
-  *          +   *        +
-       *   +      *   *      +
-  +      *          +     *
-     *        +   *      +
-  *     +         *        +   *
-  </div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
 
   <div class="planet planet-big">
     <svg viewBox="0 0 10 8" shape-rendering="crispEdges" aria-hidden="true">
@@ -79,5 +66,23 @@
   </main>
 
   <footer>cfmon.de</footer>
+  <script>
+    (function () {
+      var stars = document.getElementById('stars');
+      var count = Math.round(window.innerWidth * window.innerHeight / 45000);
+      count = Math.min(Math.max(count, 30), 120);
+      var glyphs = ['+', '*', '.', '+', '+'];
+      for (var i = 0; i < count; i++) {
+        var s = document.createElement('span');
+        s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.fontSize = (8 + Math.random() * 8) + 'px';
+        s.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+        if (Math.random() < 0.25) s.classList.add('twinkle');
+        stars.appendChild(s);
+      }
+    })();
+  </script>
 </body>
 </html>
